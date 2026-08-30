@@ -1,6 +1,6 @@
 # Project Plan and Handoff
 
-This file is the main working plan for the POS Support Report Automation project. Future chats should use this file as the starting point for context.
+This file is the main working plan for the POS Support Report Automation project. In Future should use this file as the starting point for context.
 
 ## 1. Project Goal
 
