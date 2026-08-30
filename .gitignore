@@ -12,7 +12,7 @@ __pycache__/
 .venv/
 venv/
 env/
-
+y
 # Local database and temp files
 *.log
 *.tmp
@@ -20,9 +20,7 @@ env/
 uploads/receipts/
 
     # Url to trigger the webhook for the receipt upload
-    https://defaultcb45bd5d0cab48bfb42b839fc45a9a.9b.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/20/workflows/33398e8e2836421b922faeff875d83f7/triggers/manual/paths/invoke?api-version=1
-    https://defaultcb45bd5d0cab48bfb42b839fc45a9a.9b.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/20/workflows/33398e8e2836421b922faeff875d83f7/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0i6V2nje1o-J_SvqfiTbFiV92gw2ShKmk9SYu2XaeH0
-
+    
     $body = @{
     "Staff Name" = "Test Staff"
     "Location" = "Agbor"
@@ -34,8 +32,7 @@ uploads/receipts/
 } | ConvertTo-Json
 
 Invoke-RestMethod `
-    -Uri "https://defaultcb45bd5d0cab48bfb42b839fc45a9a.9b.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/20/workflows/33398e8e2836421b922faeff875d83f7/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0i6V2nje1o-J_SvqfiTbFiV92gw2ShKmk9SYu2XaeH0" `
-    -Method Post `
+    - -Method Post `
     -ContentType "application/json" `
     -Body $body  
 
