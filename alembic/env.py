@@ -4,6 +4,20 @@ from logging.config import fileConfig
 
 from alembic import context
 from sqlalchemy import engine_from_config, pool
+from sqlalchemy.dialects import registry
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from app.core.config import settings
+from app.core.database import Base
+from app.core.mysql_legacy import LegacyMySQLDialect
+
+registry.register(
+    "mysql.legacy_pymysql",
+    "app.core.mysql_legacy",
+    "LegacyMySQLDialect",
+)
+
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -12,7 +26,13 @@ from app.core.database import Base
 from app.models import Staff, Merchant, Terminal, Receipt, SupportReport
 
 config = context.config
-config.set_main_option("sqlalchemy.url", settings.database_url)
+legacy_database_url = settings.database_url.replace(
+    "mysql+pymysql://",
+    "mysql+legacy_pymysql://",
+    1,
+)
+
+config.set_main_option("sqlalchemy.url", legacy_database_url)
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)

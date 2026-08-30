@@ -1,0 +1,13 @@
+fixture,variant,psm,output_file,status,characters,duration_seconds,error
+1001599297.jpg,original,6,1001599297__original__psm6.txt,OK,699,27.969,
+1001599297.jpg,original,11,1001599297__original__psm11.txt,OK,750,4.719,
+1001599297.jpg,upscaled,6,1001599297__upscaled__psm6.txt,OK,805,5.875,
+1001599297.jpg,upscaled,11,1001599297__upscaled__psm11.txt,OK,797,5.343,
+1001599297.jpg,grayscale_upscaled,6,1001599297__grayscale_upscaled__psm6.txt,OK,735,4.485,
+1001599297.jpg,grayscale_upscaled,11,1001599297__grayscale_upscaled__psm11.txt,OK,776,4.156,
+1001599126 (1).jpg,original,6,1001599126_1__original__psm6.txt,OK,513,2.578,
+1001599126 (1).jpg,original,11,1001599126_1__original__psm11.txt,OK,507,2.765,
+1001599126 (1).jpg,upscaled,6,1001599126_1__upscaled__psm6.txt,OK,584,3.953,
+1001599126 (1).jpg,upscaled,11,1001599126_1__upscaled__psm11.txt,OK,563,3.953,
+1001599126 (1).jpg,grayscale_upscaled,6,1001599126_1__grayscale_upscaled__psm6.txt,OK,622,3.344,
+1001599126 (1).jpg,grayscale_upscaled,11,1001599126_1__grayscale_upscaled__psm11.txt,OK,697,3.563,
