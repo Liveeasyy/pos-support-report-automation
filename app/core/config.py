@@ -7,13 +7,7 @@ load_dotenv()
 
 class Settings:
     def __init__(self) -> None:
-        self.DB_HOST = os.getenv("DB_HOST", "localhost")
-        self.DB_PORT = int(os.getenv("DB_PORT", "3306"))
-        self.DB_NAME = os.getenv("DB_NAME", "pos_support_db")
-        self.DB_USER = os.getenv("DB_USER", "root")
-        self.DB_PASSWORD = os.getenv("DB_PASSWORD", "")
-        self.TESSERACT_CMD = os.getenv(
-            "TESSERACT_CMD", r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+        s
         )
         self.TESSERACT_TIMEOUT_SECONDS = int(os.getenv("TESSERACT_TIMEOUT_SECONDS", "30"))
         self.MICROSOFT_FORMS_SUBMISSION_URL = os.getenv(
