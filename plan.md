@@ -238,42 +238,7 @@ Field assessment: merchant name recognized; `RRN` and `Tx Ref` candidate recogni
 #### `1001599126 (1).jpg`
 
 ```text
-I
 
-NEAT L INE STORE
-
-\\ ‘ > U RO
-2026/0g, 1, 1033740
-
-LG T e
-
-TID: 20577809
-
-STAN: 006404
-
-RRN: 000040006404
-
-Payment Method: CARD
-
-Sard: deasggeess+6802
-
-PAN Seq Ng: 00 NG
-Caru'ho?dg, : /USANI/MBANG
-
-41D:" 4000000003 1010
-EXPIRY: 05/30 k
-Acquirer: Zenith Bank
-PTSP: NETOP
-Verified by k4
-RS & e SRR
-
-hase
-
-o Y
-
-Fk ok
-RPN
-```
 
 Field assessment: merchant name was recognizable but lost the hyphen and gained spacing corruption; date and time were not reliably recovered; terminal ID was corrupted (`B` read as `9`); the visible RRN candidate was corrupted (`6` read as `0`); location and amount were not recognized.
 
@@ -459,6 +424,6 @@ The intended workflow is:
 8. Issue observed and remark are populated as required.
 9. The data is mapped to the Microsoft Form.
 
-## 8. Notes for Future Chats
+## 8. Notes for Future works
 
-If a new chat is opened, start by reading this file first so the current state and next steps are clear. The immediate next executable step is to obtain and approve the privacy-safe receipt sample set, then run the documented OCR provider evaluation before adding any provider dependency or adapter.
+If a new work is opened, start by reading this file first so the current state and next steps are clear. The immediate next executable step is to obtain and approve the privacy-safe receipt sample set, then run the documented OCR provider evaluation before adding any provider dependency or adapter.
