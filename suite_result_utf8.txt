@@ -1,0 +1,98 @@
+﻿......F.....................................                           [100%]
+================================== FAILURES ===================================
+____ MicrosoftFormsSubmissionTests.test_missing_endpoint_is_not_configured ____
+
+    def submit(self, payload: MicrosoftFormPayload) -> None:
+        if not isinstance(payload, MicrosoftFormPayload):
+            raise TypeError("payload must be a MicrosoftFormPayload")
+        if not self.endpoint_url:
+            raise FormSubmissionNotConfigured(
+                "Microsoft Forms submission URL is not configured."
+            )
+    
+        request = Request(
+            self.endpoint_url,
+            data=json.dumps(payload.as_dict()).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        try:
+>           with urlopen(request, timeout=self.timeout_seconds) as response:
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+app\services\form_mapping.py:189: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:216: in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:525: in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+..\..\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:634: in http_response
+    response = self.parent.error(
+..\..\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:563: in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+..\..\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:496: in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <urllib.request.HTTPDefaultErrorHandler object at 0x000002051835ED90>
+req = <urllib.request.Request object at 0x000002051835E810>
+fp = <http.client.HTTPResponse object at 0x0000020518342020>, code = 502
+msg = 'Bad Gateway'
+hdrs = <http.client.HTTPMessage object at 0x000002051836D3D0>
+
+    def http_error_default(self, req, fp, code, msg, hdrs):
+>       raise HTTPError(req.full_url, code, msg, hdrs, fp)
+E       urllib.error.HTTPError: HTTP Error 502: Bad Gateway
+
+..\..\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:643: HTTPError
+
+The above exception was the direct cause of the following exception:
+
+self = <test_forms_submission.MicrosoftFormsSubmissionTests testMethod=test_missing_endpoint_is_not_configured>
+
+    def test_missing_endpoint_is_not_configured(self):
+        with self.assertRaises(FormSubmissionNotConfigured):
+>           MicrosoftFormsSubmissionClient("").submit(form_payload())
+
+tests\test_forms_submission.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def submit(self, payload: MicrosoftFormPayload) -> None:
+        if not isinstance(payload, MicrosoftFormPayload):
+            raise TypeError("payload must be a MicrosoftFormPayload")
+        if not self.endpoint_url:
+            raise FormSubmissionNotConfigured(
+                "Microsoft Forms submission URL is not configured."
+            )
+    
+        request = Request(
+            self.endpoint_url,
+            data=json.dumps(payload.as_dict()).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        try:
+            with urlopen(request, timeout=self.timeout_seconds) as response:
+                response.read()
+        except (HTTPError, URLError, TimeoutError, OSError) as exc:
+>           raise FormSubmissionError("Microsoft Forms submission failed") from exc
+E           app.services.form_mapping.FormSubmissionError: Microsoft Forms submission failed
+
+app\services\form_mapping.py:192: FormSubmissionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\starlette\formparsers.py:12
+  C:\Users\TOSHIBA PC\Documents\pos-support-report-automation\.venv\Lib\site-packages\starlette\formparsers.py:12: PendingDeprecationWarning: Please use `import python_multipart` instead.
+    import multipart
+
+tests/test_report_workflow.py::ReportWorkflowTests::test_duplicate_receipt_reference_fails_before_new_receipt
+  C:\Users\TOSHIBA PC\Documents\pos-support-report-automation\tests\test_report_workflow.py:44: SAWarning: Dialect mysql:pymysql will not make use of SQL compilation caching as it does not set the 'supports_statement_cache' attribute to ``True``.  This can have significant performance implications including some performance degradations in comparison to prior SQLAlchemy versions.  Dialect maintainers should seek to set this attribute to True after appropriate development and testing for SQLAlchemy 1.4 caching support.   Alternatively, this attribute may be set to False which will disable this warning. (Background on this warning at: https://sqlalche.me/e/20/cprf)
+    self.session.flush()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_forms_submission.py::MicrosoftFormsSubmissionTests::test_missing_endpoint_is_not_configured
+1 failed, 43 passed, 2 warnings, 2 subtests passed in 9.28s

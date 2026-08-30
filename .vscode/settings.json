@@ -1,0 +1,11 @@
+{
+    "python-envs.pythonProjects": [
+        {
+            "path": "app/core/test_legacy_mysql.py",
+            "envManager": "ms-python.python:venv",
+            "packageManager": "ms-python.python:pip"
+        }
+    ],
+    "chat.sessionSync.enabled": true,
+    "github.copilot.chat.localIndex.enabled": true
+}

@@ -12,6 +12,16 @@ class Settings:
         self.DB_NAME = os.getenv("DB_NAME", "pos_support_db")
         self.DB_USER = os.getenv("DB_USER", "root")
         self.DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+        self.TESSERACT_CMD = os.getenv(
+            "TESSERACT_CMD", r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+        )
+        self.TESSERACT_TIMEOUT_SECONDS = int(os.getenv("TESSERACT_TIMEOUT_SECONDS", "30"))
+        self.MICROSOFT_FORMS_SUBMISSION_URL = os.getenv(
+            "MICROSOFT_FORMS_SUBMISSION_URL", ""
+        )
+        self.MICROSOFT_FORMS_SUBMISSION_TIMEOUT_SECONDS = int(
+            os.getenv("MICROSOFT_FORMS_SUBMISSION_TIMEOUT_SECONDS", "30")
+        )
 
     @property
     def database_url(self) -> str:
