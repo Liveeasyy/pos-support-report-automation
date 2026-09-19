@@ -17,6 +17,9 @@ class ManualReviewInterfaceTests(TestCase):
 
         self.assertIn("enctype='multipart/form-data'", page)
         self.assertIn("name='receipt'", page)
+        self.assertIn("id='cameraInput'", page)
+        self.assertIn("capture='environment'", page)
+        self.assertIn("id='galleryInput'", page)
         self.assertIn("name='visitation_date'", page)
         self.assertNotIn("Transaction Amount", page)
 

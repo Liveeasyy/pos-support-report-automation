@@ -42,6 +42,8 @@ button {{ cursor: pointer; background: #176b87; color: white; border: 0; font-we
 .review {{ border-left: 4px solid #d97706; padding: .75rem 1rem; background: #fff7ed; }}
 .error {{ border-left: 4px solid #b42318; padding: .75rem 1rem; background: #fff1f0; }}
 .payload {{ border-top: 1px solid #d9e2ec; margin-top: 1.5rem; padding-top: 1rem; }}
+.capture-options {{ display: flex; gap: .75rem; }}
+.capture-options button {{ flex: 1; }}
 </style></head><body>{content}</body></html>"""
 
 
@@ -50,10 +52,30 @@ def upload_page() -> str:
     return _page(
         "<h1>Receipt review</h1>"
         "<p>Upload a receipt image to extract a manual Microsoft Forms payload.</p>"
-        f"<form action='/' method='post' enctype='multipart/form-data'>"
-        f"<label>Receipt image<input type='file' name='receipt' accept='image/*' required></label>"
+        f"<form id='uploadForm' action='/' method='post' enctype='multipart/form-data'>"
+        "<label>Receipt image"
+        "<input type='file' name='receipt' id='receiptInput' accept='image/*' required>"
+        "</label>"
+        "<div class='capture-options'>"
+        "<button type='button' onclick='document.getElementById(\"cameraInput\").click()'>Take Photo</button>"
+        "<button type='button' onclick='document.getElementById(\"galleryInput\").click()'>Choose from Gallery</button>"
+        "</div>"
+        "<input type='file' id='cameraInput' accept='image/*' capture='environment' style='display:none'>"
+        "<input type='file' id='galleryInput' accept='image/*' style='display:none'>"
         f"<label>Date Of Merchant's Visitation<input type='date' name='visitation_date' value='{date.today().isoformat()}' required></label>"
         "<button type='submit'>Process receipt</button></form>"
+        "<script>"
+        "(function(){"
+        "var receiptInput=document.getElementById('receiptInput');"
+        "var cameraInput=document.getElementById('cameraInput');"
+        "var galleryInput=document.getElementById('galleryInput');"
+        "function copyToReceipt(source){"
+        "if(source.files&&source.files.length){receiptInput.files=source.files;}"
+        "}"
+        "cameraInput.addEventListener('change',function(){copyToReceipt(cameraInput);});"
+        "galleryInput.addEventListener('change',function(){copyToReceipt(galleryInput);});"
+        "})();"
+        "</script>"
     )
 
 
